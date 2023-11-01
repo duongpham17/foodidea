@@ -2,10 +2,10 @@ import Head from 'next/head';
 
 
 const websiteName = "FoodIdea"
-const defaultDescription = "";
-const defaultKeywords = "";
-const defaultOgTitle = "";
-const defaultOgImage = ""
+const defaultDescription = "food idea is about helping each other cook good food and sharing our recipes with each other.";
+const defaultKeywords = "food, idea, random food, food idea, foods";
+const defaultOgTitle = "Food is life";
+const defaultOgImage = "https://bafkreidaorlctsryd6n3yvafhk3j5y32n6smt2c5dfsbfrsmrlwanwuzwu.ipfs.nftstorage.link/"
 
 interface Props {
   title?: any,
