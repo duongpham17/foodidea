@@ -10,17 +10,22 @@
             border-color: var(--clr-blue);
         }
     }
-    .back{
-        padding: 0.5rem;
-        font-size: 1rem;
+    .links{
         display: flex;
         align-items: center;
-        svg{
-            margin-right: 0.5rem;
-        }
-        &:hover{
-            *{
-                color: var(--clr-blue);
+        justify-content: space-between;
+        a{
+            padding: 0.5rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            span{
+                margin: 0 0.5rem;
+            }
+            &:hover{
+                *{
+                    color: var(--clr-main);
+                }
             }
         }
     }

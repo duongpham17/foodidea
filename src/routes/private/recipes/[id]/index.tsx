@@ -25,7 +25,7 @@ import Choice from '@components/inputs/Choice'
 import Line from '@components/line/Style1';
 
 import { AiOutlinePlus } from 'react-icons/ai';
-import { HiArrowNarrowLeft } from 'react-icons/hi';
+import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
 
 const IDIndex = () => {
   const router = useRouter();
@@ -110,10 +110,16 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
   return (
     <div className={styles.container}>
 
-      <Link href={"/me/recipes"} className={styles.back}>
-        <HiArrowNarrowLeft/>
-        <span>back to recipes</span>
-      </Link>
+      <div className={styles.links}>
+        <Link href={"/"}>
+          <HiArrowNarrowLeft/>
+          <span>back</span>
+        </Link>
+        <Link href={`/recipes/${data._id}`} className={styles.back}>
+          <span>live</span>
+          <HiArrowNarrowRight/>
+        </Link>
+      </div>
 
       <div className={styles.extra}>
         <p>Views {data.views} </p>
