@@ -1,0 +1,62 @@
+.container{
+    background-color: var(--clr-main-fade);
+    padding: 0.5rem;
+    
+    .upload{
+        .inputFile{
+            display: none;
+        }
+        label{
+            display: block;
+            text-align: center;
+            border: 2px dotted black;
+            height: 100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            &:hover{
+                border-color: var(--clr-main);
+            }
+        }
+    }
+
+    .preview{
+        position: relative;
+        padding: 0.5rem;
+
+        div{
+            height: 100%;
+        }
+
+        .images{
+            display: inline-flex;
+            flex-wrap: wrap;
+            margin: auto;
+            width: 100%;
+            justify-content: center;
+
+            .image{
+                position: relative;
+                margin: 0.5rem;
+
+                img{
+                    width: 100px;
+                    height: 100px;
+                    margin: auto;
+                    border-radius: 5px;
+                }
+
+                button{
+                    color: white;
+                    background-color: var(--clr-red);
+                    display: flex;
+                    position: absolute;
+                    top: 0;
+                }
+            }
+        }
+    }
+
+}

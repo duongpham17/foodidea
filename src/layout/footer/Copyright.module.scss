@@ -1,0 +1,9 @@
+.container{
+    padding: 0.5rem;
+    border-top: 1px solid var(--clr-main-light);
+    text-align: center;
+    small{
+        color: var(--clr-dark);
+        font-size: 0.7rem;
+    }
+}

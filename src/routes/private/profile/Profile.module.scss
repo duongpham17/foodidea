@@ -1,0 +1,19 @@
+.box{
+    margin: 1rem auto;
+}
+
+.imageContainer{
+    .image{
+        width: 100px;
+        height: 100px;
+        background-color: var(--clr-light-light);
+        border-radius: 50px;
+        margin: auto;
+        border: 2px solid var(--clr-light);
+        cursor: pointer;
+
+        &:hover{
+            opacity: 0.8;
+        }
+    }
+}

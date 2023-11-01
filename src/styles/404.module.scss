@@ -1,0 +1,12 @@
+.container{ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+
+    a{
+        &:hover{
+            color: var(--clr-main);
+        }
+    }
+}

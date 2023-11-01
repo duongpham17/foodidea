@@ -1,0 +1,37 @@
+.container{
+    width: 100%;
+
+    textarea{
+        padding: 0.5rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        box-sizing: border-box;
+        border: 1px solid var(--clr-grey);
+        background-color: white;
+        height: 130px;
+        resize: none;
+        font-family: inherit;
+        font-size: 0.9rem;
+        
+        &:hover, &:focus{
+            border-color: var(--clr-main);
+        }
+    }
+
+    label{
+        width: 100%;
+        margin-bottom: 0.2rem;
+        font-weight: 200;
+    }
+
+    .double{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .error{
+        color: var(--clr-red);
+    }
+
+}
