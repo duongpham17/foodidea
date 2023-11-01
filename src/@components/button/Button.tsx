@@ -21,7 +21,7 @@ const Button = ({label1, label2, loading, color, selected, margin, warning, ...p
             {warning 
             ?   
                 !sure ? 
-                    <button className={`${styles[color ? color : "default"]} ${selected && styles.selected} ${margin && styles.margin}`} onClick={() => setSure(true)}>
+                    <button type="button" className={`${styles[color ? color : "default"]} ${selected && styles.selected} ${margin && styles.margin}`} onClick={() => setSure(true)}>
                         { label1 && !label2 && 
                             <div className={styles.single}>  
                                 {!loading && <span> { label1 } </span>}
