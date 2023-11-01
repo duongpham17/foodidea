@@ -161,7 +161,7 @@ const Ingredients = ({data}: Props) => {
       <h1>INGREDIENTS [ {data.ingredients.length} ]</h1>
       { data.ingredients.map((el) =>     
         <div className={styles.ingredient} key={generateid()}>
-          <span>{el || "unknown"}</span>
+          <span>{firstcaps(el) || "unknown"}</span>
         </div>
       )}
     </section>
