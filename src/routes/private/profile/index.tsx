@@ -36,11 +36,15 @@ const Profile = () => {
       </div>
 
       <div className={styles.box}>
+        <Button label1={user.email} color="light" />
+      </div>
+
+      <div className={styles.box}>
         <Username user={user} />
       </div>
 
       <div className={styles.box}>
-        <Button label1={user.email} color="light" />
+        <CryptoAddresses user={user} />
       </div>
 
     </Container>
@@ -119,6 +123,42 @@ const Image = ({user}: Props) => {
                   onDelete={onDeleteImage}
                   onUpload={onUploadImage}
                 />
+            </Container>
+          </Cover>
+        }
+
+    </div>
+  )
+}
+
+const CryptoAddresses = ({user}: Props) => {
+
+  const {open, onOpen} = useOpen({});
+
+  const {values, onChange, onSubmit, loading, edited, setValues} = useForm(user, callback);
+
+  async function callback(){
+    try{
+      const response = await api.patch("/users", values);
+      setValues(response.data.data);
+    } catch(err: any){
+      console.log(err);
+    }
+  };
+
+  return (
+    <div>
+      <Button label1={"Crypto Addresses"} color="light" onClick={onOpen} />
+
+      {open &&
+          <Cover onClose={onOpen}>
+            <Container width={"500px"}>
+              <form onSubmit={onSubmit}>
+                <Input label1="Bitcoin" name="crypto_addresses.bitcoin" value={values.crypto_addresses.bitcoin || ""} onChange={onChange} />
+                <Input label1="Ethereum" name="crypto_addresses.ethereum" value={values.crypto_addresses.ethereum || ""} onChange={onChange} />
+                <Input label1="Cardano" name="crypto_addresses.cardano" value={values.crypto_addresses.cardano || ""} onChange={onChange} />
+                { (edited && !loading) && <Button type="submit" label1="update" loading={loading} color="blue" /> }
+              </form>
             </Container>
           </Cover>
         }

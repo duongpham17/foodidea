@@ -4,23 +4,33 @@ import crypto from 'crypto';
 
 export interface IUsersResponse {
     _id: string,
+    role: "user" | "admin",
     email: string,
     username: string,
     image: string,
-    role: "user" | "admin",
+    crypto_addresses: {
+        bitcoin: string,
+        ethereum: string,
+        cardano: string
+    },
     verified: boolean,
     code: string,
     confirmation: string,
     confirmation_expiration: number,
     createdAt: Date,
-}
+};
 
 export interface IUsers extends Partial<Document>  {
     _id: Types.ObjectId,
+    role: "user" | "admin",
     email: string,
     username: string,
     image: string,
-    role: "user" | "admin",
+    crypto_addresses: {
+        bitcoin: string,
+        ethereum: string,
+        cardano: string
+    },
     verified: boolean,
     code: string,
     confirmation: string,
@@ -36,6 +46,11 @@ const schema = new Schema<IUsers>({
         trim: true,
         lowercase: true,
         unique: true
+    },
+    crypto_addresses:{
+        bitcoin: {type: String, default: ""},
+        ethereum: {type: String, default: ""},
+        cardano: {type: String, default: ""},
     },
     image: {
         type: String,

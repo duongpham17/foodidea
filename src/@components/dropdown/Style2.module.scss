@@ -1,0 +1,27 @@
+.container{
+    position: relative;
+
+    .dropdownBtn{
+        cursor: pointer;
+        display: flex
+    };
+
+    .dropdownBtn:focus + .children, .children:active{
+        display: block;
+    }
+
+    .children{
+        display: none;
+        position: absolute;
+        background-color: white;
+        width: 160px;
+        padding: 0.5rem;
+        left: 50%;
+        transform: translate(-50%, 3%);
+        border-radius: 5px;
+        border: 1px solid vaR(--clr-light);
+    }
+    .children:hover{
+        display: block;
+    }
+}

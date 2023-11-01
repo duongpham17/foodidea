@@ -10,7 +10,7 @@ import useFetch from '@hooks/useFetch';
 
 import Cover from '@components/cover/Cover';
 import Container from '@components/containers/Style1';
-import Dropdown from '@components/dropdown/Dropdown';
+import Dropdown from '@components/dropdown/Style1';
 import Button from '@components/button/Button';
 import Loading from '@components/loading/Loading';
 import Line from '@components/line/Style1';

@@ -348,6 +348,11 @@ const Steps = ({parent, element, index, setValues, onReorederSteps, reorderIndex
             <img src={values.data} alt="preview" /> 
           : values.format === "VIDEO" ?
             <video src={values.data} controls />
+          : values.format === "YOUTUBE" ?
+              <div className={styles.youtube}>
+                <iframe width="100%" height="300" src={values.data} title="YouTube video player" frameBorder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
+                <button onClick={() => onOpenValue(index)}>Edit Youtube</button>
+              </div>
           : <p>Unknown</p>
         }
 
@@ -364,7 +369,7 @@ const Steps = ({parent, element, index, setValues, onReorederSteps, reorderIndex
 
               <Line />
 
-              <Choice value={values.format} label="" items={["header", "normal", "small", "light", "bold", "link", "image", "video" ]} onClick={(item) => onSetValue({format: item.toUpperCase()})} />
+              <Choice value={values.format} label="" items={["header", "normal", "small", "light", "bold", "link", "image", "video", "youtube" ]} onClick={(item) => onSetValue({format: item.toUpperCase()})} />
 
               <Line />
 
@@ -382,6 +387,10 @@ const Steps = ({parent, element, index, setValues, onReorederSteps, reorderIndex
                   onDelete={onDeleteImage}
                   onUpload={onUploadImage}
                 />
+              }
+
+              {(values.format === "YOUTUBE") &&
+                <Textarea placeholder='youtube embded url' name="data" value={values.data || ""} onChange={onChange} />
               }
 
               {edited && <Button label1="save" type="submit" loading={loading} color="blue"  />}
