@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const DEVELOPMENT_URL= "http://localhost:3000";
-const PRODUCTION_URL= "https://foodidea.co.uk";
+const PRODUCTION_URL= "https://www.foodidea.co.uk";
 
 const url = process.env.NODE_ENV === "development" ? DEVELOPMENT_URL : PRODUCTION_URL;
 
