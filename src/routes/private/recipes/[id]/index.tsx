@@ -252,7 +252,7 @@ const Ingredients = ({parent, element, index, setValues}: PropsIngredientsTypes)
             <form onSubmit={onSubmit}>
               <Flex>
                 <p>{index+1}. Ingredient </p>
-                <Button label1="remove" onClick={onDelete} warning color='black'  />
+                <Button label1="remove" onClick={onDelete} warning color='black' type="button" />
               </Flex>
 
               <Line />
@@ -364,7 +364,7 @@ const Steps = ({parent, element, index, setValues, onReorederSteps, reorderIndex
             <form onSubmit={onSubmit}>
               <Flex>
                 <p>{index+1}. </p>
-                <Button label1="remove" onClick={onDelete} warning color='black'  />
+                <Button label1="remove" onClick={onDelete} warning color='black' type="button"/>
               </Flex>
 
               <Line />
