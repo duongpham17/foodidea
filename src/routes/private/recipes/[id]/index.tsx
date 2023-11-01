@@ -6,7 +6,7 @@ import { IRecipesResponse } from '@database/models/recipes';
 import { upload, remove } from '@thirdparty/nftstorage';
 import { api } from '@database/api';
 import { ddmmyy, readminutes } from '@utils/time';
-import { generateid } from '@utils/function';
+import { generateid, firstcaps } from '@utils/function';
 
 import useForm from '@hooks/useForm';
 import useFetch from '@hooks/useFetch';
@@ -243,7 +243,7 @@ const Ingredients = ({parent, element, index, setValues}: PropsIngredientsTypes)
     <div className={styles.ingredientChildren} onClick={() => onOpenValue(index)}>
       <div className={styles.children}>
         <span>{index+1}.</span>
-        <span>{element || "unknown"}</span>
+        <span>{firstcaps(element) || "unknown"}</span>
       </div>
     
       {openValue === index &&
