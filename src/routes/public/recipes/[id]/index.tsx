@@ -12,7 +12,6 @@ import Loading from '@components/loading/Loading';
 import Observer from '@components/observer/Observer';
 import Dropdown from '@components/dropdown/Style2';
 import Cover from '@components/cover/Cover';
-import Container from '@components/containers/Style1';
 
 import { HiArrowNarrowLeft, HiArrowNarrowRight  } from 'react-icons/hi';
 import { AiOutlineClockCircle, AiOutlineLink, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
@@ -20,20 +19,20 @@ import { FaBitcoin } from 'react-icons/fa';
 import useOpen from '@hooks/useOpen';
 
 const IDIndex = ({recipes}: PropsTypes) => {
-  return ( !recipes ? <Loading /> : <Recipe data={recipes} /> )
+  return ( !recipes ? <Loading message="Recipe no longer exist" /> : <Recipe data={recipes} /> )
 };
 
 export default IDIndex;
 
 interface Props {
   data: IRecipes_IUsers
-}
+};
 
 const Recipe = ({data}: {data: IRecipes_IUsers}) => {
 
   const props = {
     data
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -142,7 +141,7 @@ const Information = ({data}: Props) => {
   return (
     <section className={styles.information}>
       <div className={styles.header}>
-        <h1>{data.name.toUpperCase() || "UNKNOWN RECIPE"} fnwejf wenifwe finwe</h1>
+        <h1>{data.name.toUpperCase() || "UNKNOWN RECIPE"}</h1>
         { favourites?.find(el => el.recipeID === data._id)
           ? <button className={styles.heart}><AiFillHeart/></button> 
           : <button onClick={customFavourite}><AiOutlineHeart/></button> 

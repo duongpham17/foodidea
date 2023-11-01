@@ -76,7 +76,7 @@ const Recipes = ({data, setData}: Props) => {
                   <img src={el.image} alt="recipe" />
                 </div>
               </Link>
-              <Link href={`/recipes/${el._id}`}>
+              <Link href={`/me/recipes/${el._id}`}>
                 <div className={styles.information}>
                   <h2>{el.name.toUpperCase() || "UNKNOWN"}</h2>
                   <small>{ddmmyy(el.timestamp)}</small>
@@ -113,7 +113,7 @@ const Create = ({setData, data}: Props) => {
 
   return (
     <div className={styles.create}>
-      <h2>RECIPES [ {data?.length || 0} ] </h2>
+      <h3>RECIPES [ {data?.length || 0} ] </h3>
       <Button label1="CREATE" onClick={onCreate} color="black" loading={loading} />
     </div>
   )

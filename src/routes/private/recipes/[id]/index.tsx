@@ -96,12 +96,21 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
   };
 
   const onReorederSteps = async (index: number) => {
-    if(reorderIndex === index) return setReorederIndex(-1);
-    if(reorderIndex === -1) return setReorederIndex(index);
-    const updated = {...values};
-    const [newData, oldData] = [ updated.steps[index], updated.steps[reorderIndex] ];
-    updated.steps[index]        = oldData;
-    updated.steps[reorderIndex] = newData;
+    if (reorderIndex === index) return setReorederIndex(-1);
+    if (reorderIndex === -1) return setReorederIndex(index);
+  
+    const updated = { ...values };
+    const steps = [...updated.steps]; // Create a copy of the steps array to avoid mutating the original
+    const draggedStep = steps[reorderIndex]; // Get the step to be moved
+  
+    // Remove the dragged step from its original position
+    steps.splice(reorderIndex, 1);
+  
+    // Insert the dragged step at the new position
+    steps.splice(index, 0, draggedStep);
+  
+    updated.steps = steps; // Update the steps array in the updated object
+  
     await api.patch("/recipes", updated);
     setValues(updated);
     setReorederIndex(-1);
@@ -111,7 +120,7 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
     <div className={styles.container}>
 
       <div className={styles.links}>
-        <Link href={"/"}>
+        <Link href={"/me/recipes"}>
           <HiArrowNarrowLeft/>
           <span>back</span>
         </Link>
@@ -145,7 +154,7 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
           ? values.ingredients.map((el, index) => 
             <Ingredients 
               key={generateid()}
-              parent={data} 
+              parent={values} 
               setValues={setValues} 
               element={el} 
               index={index} 
@@ -167,7 +176,7 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
           ? values.steps.map((el, index) => 
             <Steps 
               key={el._id} 
-              parent={data} 
+              parent={values} 
               setValues={setValues} 
               element={el} 
               index={index} 

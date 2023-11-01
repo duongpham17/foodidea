@@ -30,7 +30,7 @@ const Index = (props: PropsTypes) =>  {
   return (
     <>
       <Metadata 
-        title={firstcaps(props.recipes.name)} 
+        title={props.recipes ? firstcaps(props.recipes.name) : "Unknown"} 
         description='Lets start cooking! Take a look at this recipe.'
       />
       <Recipe {...props} />
