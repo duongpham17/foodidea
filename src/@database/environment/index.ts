@@ -1,1 +1,1 @@
-export const website_name = "CookBook";
+export const website_name = "Foodidea";
