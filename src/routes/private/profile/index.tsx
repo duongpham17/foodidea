@@ -93,6 +93,7 @@ const Image = ({user}: Props) => {
 
   const onUploadImage = async (blob: any) => {
     try{
+      if(user.image) await remove(user.image);
       const {url} = await upload(blob);
       await api.patch("/users", {...user, image: url});
     } catch(err){

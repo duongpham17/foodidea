@@ -81,6 +81,7 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
 
   const onUploadImage = async (blob: any) => {
     try{
+      if(values.image) await remove(values.image);
       const {url} = await upload(blob);
       await api.patch("/recipes", {...values, image: url});
       onSetValue({image: url});
