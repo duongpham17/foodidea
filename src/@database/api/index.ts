@@ -5,7 +5,7 @@ const PRODUCTION_URL= "https://www.foodidea.co.uk";
 
 const url = process.env.NODE_ENV === "development" ? DEVELOPMENT_URL : PRODUCTION_URL;
 
-const storage = typeof window === "undefined" ? "" :  localStorage.getItem("user");
+const storage = typeof window === "undefined" ? "" :  localStorage.getItem("foodidea-user");
 
 const user = storage ? JSON.parse(storage) : {};
 

@@ -108,7 +108,10 @@ const Results = ({results}: Props) => {
               <p>Views {el.views}</p>
             </div>
             <div className={styles.image}>
-              <img src={el.image} alt="recipe" />
+              {el.image 
+                ? <img src={el.image} alt="recipe" />
+                : <img src={'/logo.webp'} alt="recipe" />
+              }
             </div>
             <div className={styles.information}>
               <h2>{el.name.toUpperCase() || "UNKNOWN"}</h2>

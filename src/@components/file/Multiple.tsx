@@ -7,7 +7,7 @@ interface Props {
     id: string,
     src: string[],
     onUpload?: (blob: any) => Promise<void>;
-    onDelete?: (cid: string, index: number) => Promise<void>;
+    onDelete?: (cid: string[], index: number) => Promise<void>;
 }
 
 const MultipleFiles = ({src, onUpload, onDelete, id}: Props) => {
@@ -34,7 +34,7 @@ const MultipleFiles = ({src, onUpload, onDelete, id}: Props) => {
     const onRemoveFile = async (url: string, index: number) => {
         setLoading(true);
         setPreview(state => state.filter(el => el !== url));
-        if(onDelete) await onDelete(url.split("/")[2].split(".")[0], index);
+        if(onDelete) await onDelete(preview, index);
         setLoading(false)
     };
 

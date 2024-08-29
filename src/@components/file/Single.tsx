@@ -29,7 +29,7 @@ const SingleFile = ({src, onUpload, onDelete, id}: Props) => {
     const onRemoveFile = async () => {
         setLoading(true);
         setPreview("");
-        if(onDelete) await onDelete(preview.split("/")[2].split(".")[0]);
+        if(onDelete) await onDelete(preview);
         setLoading(false)
     };
 

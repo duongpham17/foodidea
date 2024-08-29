@@ -22,7 +22,7 @@ export const useAuthentication = ({children}: Props) => {
     const [user, setUser] = useState<IUsersResponse | null>(null);
 
     useEffect(() => {
-        const storage = typeof window === "undefined" ? "" :  localStorage.getItem("user");
+        const storage = typeof window === "undefined" ? "" :  localStorage.getItem("foodidea-user");
         const user = storage ? JSON.parse(storage) : null;
         if(!user) return;
         (async () => {

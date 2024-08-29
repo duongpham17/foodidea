@@ -8,7 +8,6 @@ import { upload, remove } from '@thirdparty/nftstorage';
 import Header from '@components/header/Style1';
 import Loading from '@components/loading/Loading';
 import Container from '@components/containers/Style1';
-import Line from '@components/line/Style1';
 import Button from '@components/button/Button';
 import Cover from '@components/cover/Cover';
 import Input from '@components/inputs/Input';

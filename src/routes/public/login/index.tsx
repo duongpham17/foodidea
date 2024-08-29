@@ -33,7 +33,7 @@ const LoginIndex = () => {
       if(values.status === "sent"){
         const {data: {cookie, status}} = await api.post('/authentication/code', values);
         if(status === "success"){  
-          localStorage.setItem("user", JSON.stringify(cookie));
+          localStorage.setItem("foodidea-user", JSON.stringify(cookie));
           router.push(`/`);
           return
         };
@@ -45,7 +45,7 @@ const LoginIndex = () => {
   };
 
   useEffect(() => {
-    const user = locally("user");
+    const user = locally("foodidea-user");
     if(!user) return;
     router.push('/');
   }, [router])

@@ -24,7 +24,7 @@
         }
     }
 
-    .dropdownBtn:focus + .children, .children:active{
+    .dropdownBtn:focus-within + .children, .children:active{
         display: block;
     }
 

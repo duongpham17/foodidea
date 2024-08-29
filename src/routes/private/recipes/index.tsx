@@ -1,6 +1,7 @@
 import styles from './Recipes.module.scss';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { remove } from '@thirdparty/pinata';
 import { api } from '@database/api';
 import { IRecipesResponse } from '@database/models/recipes';
 import { readminutes, ddmmyy } from '@utils/time';
@@ -50,6 +51,10 @@ const Recipes = ({data, setData}: Props) => {
 
   const onDeleteRecipe = async (id: string) => {
     if(!data) return;
+    const recipe = data.find(el => el._id === id);
+    if(recipe){
+      if(recipe.image) await remove(recipe.image);
+    };
     const updated = data.filter(el => el._id !== id);
     await api.delete(`/recipes/${id}`);
     setData(updated);

@@ -108,6 +108,7 @@
                 p, small, span, b, h2, a {
                     display: block;
                     white-space: pre-line;
+                    word-break: break-all;
                 }
                 a{
                     color: var(--clr-blue);

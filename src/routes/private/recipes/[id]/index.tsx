@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { IRecipesResponse } from '@database/models/recipes';
-import { upload, remove } from '@thirdparty/nftstorage';
+import { upload, remove } from '@thirdparty/pinata';
 import { api } from '@database/api';
 import { ddmmyy, readminutes } from '@utils/time';
 import { generateid, firstcaps } from '@utils/function';
@@ -41,9 +41,13 @@ const FetchID = ({id}: {id: string}) => {
 
 const Edit = ({data}: {data: IRecipesResponse}) => {
 
+  const router = useRouter();
+
   const [reorderIndex, setReorederIndex] = useState(-1);
 
   const {onOpenValue, openValue} = useOpen<"name" | "ingredients" | "image" | "steps" | "">({initialState: ""});
+
+  const {open: sure, onOpen: onSure,} = useOpen({});
 
   const {values, onChange, onSubmit, edited, loading, onSetValue, setValues} = useForm(data, callback);
 
@@ -85,9 +89,9 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
     }
   };
 
-  const onDeleteImage = async (cid: string) => {
+  const onDeleteImage = async (url: string) => {
     try{
-      await remove(cid);
+      await remove(url);
       await api.patch("/recipes", {...values, image: ""});
       onSetValue({image: ""});
     } catch(err){
@@ -116,6 +120,12 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
     setReorederIndex(-1);
   };
 
+  const onDelete = async () => {
+    if(data.image) await remove(data.image);
+    await api.delete(`/recipes/${data._id}`);
+    router.push("/me/recipes");
+  };
+
   return (
     <div className={styles.container}>
 
@@ -124,6 +134,14 @@ const Edit = ({data}: {data: IRecipesResponse}) => {
           <HiArrowNarrowLeft/>
           <span>back</span>
         </Link>
+        {!sure ? 
+          <Button label1="delete" onClick={onSure}/>
+          :
+          <Flex>
+            <Button label1="sure" onClick={onDelete} color="red"/>
+            <Button label1="cancel" onClick={onSure}/>
+          </Flex>
+        }
         <Link href={`/recipes/${data._id}`} className={styles.back}>
           <span>live</span>
           <HiArrowNarrowRight/>
