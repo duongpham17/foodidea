@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { api } from '@database/api';
 import { IUsersResponse } from '@database/models/users';
 import { Context } from '@context/useAuthentication';
-import { upload, remove } from '@thirdparty/nftstorage';
+import { upload, remove } from '@thirdparty/pinata';
 
 import Header from '@components/header/Style1';
 import Loading from '@components/loading/Loading';
@@ -100,9 +100,9 @@ const Image = ({user}: Props) => {
     }
   };
 
-  const onDeleteImage = async (cid: string) => {
+  const onDeleteImage = async (url: string) => {
     try{
-      await remove(cid);
+      await remove(url);
       await api.patch("/users", {...user, image: ""});
     } catch(err){
       console.log(err);

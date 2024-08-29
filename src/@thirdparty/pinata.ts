@@ -2,8 +2,6 @@ export const upload = async (image: any): Promise<{ url: string; ipfs: string}> 
 
     const JWT = process.env.NEXT_PUBLIC_API_PINATA_JWT as string;
 
-    console.log(image.name)
-
     try {
         const blob = new Blob([image], { type: "text/plain" });
         const file = new File([blob], `${image.name}.txt`);
