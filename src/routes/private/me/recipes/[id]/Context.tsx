@@ -3,6 +3,7 @@
 import React, { useEffect, useState, createContext } from 'react';
 import { api } from '@database/api';
 import { IRecipesApi } from '@database/models/recipes';
+import { useParams } from 'next/navigation';
 
 interface Props {
   children: React.ReactNode,
@@ -34,6 +35,8 @@ export const Context = createContext<PropsContextTypes>({
 
 export const UseDashboardContext = ({ children }: Props) => {
 
+  const params = useParams();
+
   const [recipes, setRecipes] = useState<IRecipesApi | null>(null);
   const [edit, setEdit] = useState<IRecipesApi | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -42,8 +45,7 @@ export const UseDashboardContext = ({ children }: Props) => {
   useEffect(() => {
     (async () => {
       try{
-        const id = window.location.pathname.split("/")[3]
-        const res = await api.get(`/private/recipes/${id}`);
+        const res = await api.get(`/private/recipes/${params.id}`);
         setRecipes(res.data.data);
       } catch(err:any){
         console.log(err.response)

@@ -1,6 +1,7 @@
 "use client";
   
 import React, { useEffect, useState, createContext } from 'react';
+import { useParams } from 'next/navigation';
 import { api } from '@database/api';
 import { IRecipesApi } from '@database/models/recipes';
 import { IUsersApi } from '@database/models/users';
@@ -24,14 +25,13 @@ export const Context = createContext<PropsContextTypes>({
 });
 
 export const UseRecipesId = ({ children }: Props) => {
-
+    const params = useParams();
     const [recipe, setRecipe] = useState<IRecipesApi | null>(null);
     const [user, setUser]= useState<IUsersApi | null>(null)
 
     useEffect(() => {
         (async () => {
-            const id = window.location.pathname.split("/")[2];
-            const res = await api.get(`/public/recipes/${id}`);
+            const res = await api.get(`/public/recipes/${params.id}`);
             const recipe: IRecipesApi = res.data.data.recipes;
             setRecipe(recipe);
             const user = res.data.data.user;

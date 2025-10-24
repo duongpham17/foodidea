@@ -1,7 +1,7 @@
 "use client";
   
 import React, { useEffect, useState, createContext } from 'react';
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useParams } from "next/navigation";
 import { api } from '@database/api';
 import { IRecipesApi } from '@database/models/recipes';
 import { IUsersApi } from '@database/models/users';
@@ -27,15 +27,15 @@ export const Context = createContext<PropsContextTypes>({
 export const UseRecipesId = ({ children }: Props) => {
 
     const searchParams = useSearchParams();
+    const params = useParams();
 
     const [recipes, setRecipes] = useState<IRecipesApi[] | []>([]);
     const [user, setUser]= useState<IUsersApi | null>(null)
 
     useEffect(() => {
         (async () => {
-            const id = window.location.pathname.split("/")[2];
             const [page, limit] = [searchParams.get("page"), searchParams.get("limit")];
-            const res = await api.get(`/public/profile/${id}?page=${page}&limit=${limit}`);
+            const res = await api.get(`/public/profile/${params.id}?page=${page}&limit=${limit}`);
             setRecipes(res.data.data.recipes);
             setUser(res.data.data.user);
         })();

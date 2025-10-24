@@ -1,7 +1,7 @@
 "use client";
 
 import styles from './Search.module.scss';
-import React, { useState, Suspense } from 'react';
+import React, { useState } from 'react';
 import { IRecipesApi } from '@database/models/recipes';
 import { api } from '@database/api';
 import Link from 'next/link';

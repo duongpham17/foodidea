@@ -1,21 +1,26 @@
 "use client";
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import UseRecipesIdContext from './Context';
+
 import Edit from './edit';
-import Preview from './preview';
 import Mode from './mode';
-import Delete from './delete';
+import Loader from '@components/loaders/Style2';
+
+const Delete = lazy(() => import('./delete'));
+const Preview = lazy(() => import('./preview'));
 
 const RecipesIdRoute = () => {  
 
   return (
-    <UseRecipesIdContext>
-      <Mode />
-      <Edit />
-      <Preview />
-      <Delete />
-    </UseRecipesIdContext>
+    <Suspense fallback={<Loader/>}>
+      <UseRecipesIdContext>
+        <Mode />
+        <Edit />
+        <Preview />
+        <Delete />
+      </UseRecipesIdContext>
+    </Suspense>
   )
 }
 

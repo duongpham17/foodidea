@@ -1,11 +1,12 @@
 "use client";
 
-import { useContext } from 'react';
+import { useContext, Suspense } from 'react';
 import UseDashboardContext from './Context';
-import Recipes from './recipes';
 import { Context } from '@context/useAuthentication';
-
+import Loader from '@components/loaders/Style1';
+import Recipes from './recipes';
 import Information from './information';
+
 
 const DashboardRoute = () => {
 
@@ -13,17 +14,19 @@ const DashboardRoute = () => {
   protect(["admin", "user"]); 
 
   return (
-    <UseDashboardContext>
+    <Suspense fallback={<Loader/>}>
+      <UseDashboardContext>
 
-      <section>
-        <Information />
-      </section>
+        <section>
+          <Information />
+        </section>
+        
+        <section>
+          <Recipes />
+        </section>
       
-      <section>
-        <Recipes />
-      </section>
-    
-    </UseDashboardContext>
+      </UseDashboardContext>
+    </Suspense>
   )
 };
 
