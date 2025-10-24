@@ -37,7 +37,7 @@ export const UseRecipesId = ({ children }: Props) => {
             const user = res.data.data.user;
             setUser(user);
         })();
-    }, []);
+    }, [params.id]);
 
     const value = {
         recipe,

@@ -51,7 +51,7 @@ export const UseDashboardContext = ({ children }: Props) => {
         console.log(err.response)
       }
     })();
-  }, []);
+  }, [params.id]);
 
   const updateRecipes = async (recipe: IRecipesApi) => {
     setLoading(true);
