@@ -21,11 +21,13 @@ const Background = () => {
 
   return (
     <div className={styles.container}>
-      {icons.map((IconComponent, i) => (
-        <div key={i} className={styles[`item${i + 1}`]}>
-          <IconComponent />
-        </div>
-      ))}
+      <div className={styles.body}>
+        {icons.map((IconComponent, i) => (
+          <div key={i} className={styles[`item${i + 1}`]}>
+            <IconComponent />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
