@@ -1,0 +1,52 @@
+.container{
+    max-width: 1000px;
+    margin: auto;
+
+    section{
+        margin: 1rem 0;
+    }
+
+    .image{
+        position: relative;
+        img{
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+        }
+        div{
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            background-color: white;
+            padding: 0.4rem;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            p{
+                padding: 0.3rem;
+            }
+        }
+    }
+
+    .header{
+        h1{
+            font-size: 2rem;
+        }
+    }
+    
+    .ingredients, .instructions{
+        h1{
+            border-bottom:1px solid var(--dark);
+            margin: 0.5rem 0;
+            padding: 0.5rem 0;
+        }
+        p{
+            white-space: pre-wrap;
+        }
+        a{
+            color: var(--primary);
+            border-bottom: 1px solid var(--primary);
+        }
+    }
+
+}

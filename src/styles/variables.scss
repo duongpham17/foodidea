@@ -1,24 +1,22 @@
 :root{
-    --clr-main: #ff9538;
-    --clr-main-light: rgb(252, 209, 171);
-    --clr-main-dark: rgb(252, 122, 9);
-    --clr-main-fade: rgba(255, 149, 56, 0.784);
+    --primary: #ff9538;
+    --primary-light: rgb(249, 223, 200);
+    --primary-dark: rgb(252, 122, 9);
+    --primary-fade: rgba(255, 149, 56, 0.784);
 
-    --clr-background: white;
-    --clr-background-light: white;
+    --text: #555555;
+    --text-light: rgb(79, 79, 79);
 
-    --clr-text: #555555;
-    --clr-text-light: rgb(79, 79, 79);
-    --clr-text-dark: rgb(16, 16, 16);
-    --clr-text-fade: rgba(61, 61, 61, 0.881);
+    --dark-shade: rgba(57, 57, 57, 0.632);
+    --dark: black;
+    --light-shade: rgba(244, 244, 244, 0.976);
+    --light: rgb(245, 245, 245);
 
-    --clr-dark: #191919c5;
-    --clr-dark-light: #34343452;
-    --clr-light: #DFE0DF;
-    --clr-light-light: #f0efef98;
+    --background: white;
+    --background-light: white;
     
-    --clr-red: rgb(236, 92, 92);
-    --clr-blue: rgb(36, 116, 245);
-    --clr-green: rgb(84, 210, 111);
-    --clr-yellow: yellow;
+    --red: rgb(236, 92, 92);
+    --blue: rgb(36, 116, 245);
+    --green: rgb(84, 210, 111);
+    --yellow: yellow;
 }

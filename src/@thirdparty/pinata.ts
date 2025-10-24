@@ -1,58 +1,30 @@
-export const upload = async (image: any): Promise<{ url: string; ipfs: string}> => {
+import { PinataSDK } from "pinata";
 
-    const JWT = process.env.NEXT_PUBLIC_API_PINATA_JWT as string;
+// IMPORTANT!
+// You must create an app/api/pinata/routes.ts so environment variable can be exposed on the server, otherwise wont wont.
 
-    try {
-        const blob = new Blob([image], { type: "text/plain" });
-        const file = new File([blob], `${image.name}.txt`);
-        const data = new FormData();
-        data.append("file", file);
+export const pinata = new PinataSDK({
+  pinataJwt: process.env.PINATA_JWT as string,
+  pinataGateway: process.env.PINATA_GATEWAY as string
+});
 
-        const request = await fetch(
-            "https://api.pinata.cloud/pinning/pinFileToIPFS",
-            {
-                method: "POST",
-                headers: { Authorization: `Bearer ${JWT}`},
-                body: data,
-            }
-        );
-        const response = await request.json();
-        return {
-            url: `https://sapphire-unknown-koala-579.mypinata.cloud/ipfs/${response.IpfsHash}`,
-            ipfs: response.IpfsHash
-        }
-    } catch (error) {
-        console.log(error);
-        return {
-            url: "",
-            ipfs: ""
-        }
-    }
+export const upload = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await fetch("/api/pinata", { method: "POST", body: formData });
+  const data = await res.json();
+  const id = data.id;
+  const url = `https://sapphire-unknown-koala-579.mypinata.cloud/ipfs/${data.cid}`;
+  return {url, id};
 };
 
-export const remove = async (hash: string): Promise<boolean> => {
-
-    const JWT = process.env.NEXT_PUBLIC_API_PINATA_JWT as string;
-
-    if (!JWT) {
-        console.error("JWT is not defined. Please set NEXT_PUBLIC_API_PINATA_JWT in your environment.");
-        return false
-    };
-
-    const hashed = hash.includes('/ipfs/') ? hash.split('/ipfs/')[1] : hash;
-
-    try {
-        const request = await fetch(
-            `https://api.pinata.cloud/pinning/unpin/${hashed}`,
-            {
-                method: "DELETE",
-                headers: { Authorization: `Bearer ${JWT}`},
-            }
-        );
-        const response = await request.json();
-        return true
-    } catch (error) {
-        return false
-    }
+export const remove = async (id: string[]) => {
+  await fetch("/api/pinata", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ id }),
+  });
+  return "success";
 };
-

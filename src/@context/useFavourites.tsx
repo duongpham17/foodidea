@@ -1,6 +1,10 @@
+"use client";
+
 import React, { useEffect, useState, createContext } from 'react';
-import { IFavouritesResponse } from '@database/models/favourites';
+import { IFavouritesApi } from '@database/models/favourites';
 import { api } from '@database/api';
+import { user_authentication } from '@localstorage';
+import { IRecipesApi } from '@database/models/recipes';
 
 interface Props {
     children: React.ReactNode,
@@ -8,45 +12,42 @@ interface Props {
 
 export interface PropsContextTypes {
     loading: boolean,
-    favourites: IFavouritesResponse[] | null,
-    onFavouriteSave: ({ recipeID, followID, name, image }: Partial<IFavouritesResponse>) => Promise<void>,
-    onFavouriteRemove: (id: string) => Promise<void>
+    favourites: IFavouritesApi[] | [],
+    onFavouriteSave: (recipe: IRecipesApi) => Promise<void>,
+    onFavouriteRemove: (favourite: IFavouritesApi) => Promise<void>
 };
 
-// for consuming in children components, initial return state
 export const Context = createContext<PropsContextTypes>({
     loading: false,
-    favourites: null,
-    onFavouriteSave: async ({ recipeID, followID, name, image }) => await new Promise(resolve => resolve), 
-    onFavouriteRemove: async ( id: string ) => await new Promise(resolve => resolve)
+    favourites: [],
+    onFavouriteSave: async (recipe: IRecipesApi) => {},
+    onFavouriteRemove: async (favourite: IFavouritesApi) => {}
 });
 
 export const useFavourites = ({children}: Props) => {
 
     const [loading, setLoading] = useState(false);
 
-    const [favourites, setFavourites] = useState<IFavouritesResponse[] | null>(null);
+    const [favourites, setFavourites] = useState<IFavouritesApi[] | []>([]);
 
     useEffect(() => {
-        const storage = typeof window === "undefined" ? "" :  localStorage.getItem("user");
-        const user = storage ? JSON.parse(storage) : null;
+        const storage = typeof window === "undefined" ? "" : user_authentication.get();
+        const user = storage || undefined;
         if(!user) return;
+
         (async () => {
-            try{
-                const response = await api.get("/favourites");
-                setFavourites(response.data.data);
-            } catch(err: any){
-                console.log(err.response)
-            }
+            const res = await api.get('/private/favourites');
+            setFavourites(res.data.favourites);
         })();
     }, []);
 
-    const onFavouriteSave = async ({recipeID, followID, name, image}: Partial<IFavouritesResponse>) => {
+    const onFavouriteSave = async (recipe:IRecipesApi) => {
         if(loading) return;
         try{
             setLoading(true);
-            const response = await api.post('/favourites', {recipeID, followID, name, image});
-            setFavourites(state => ( state ? [response.data.data, ...state] : [response.data.data]));
+            const res = await api.post('/private/favourites', recipe);
+            const favourite = res.data.data.favourites;
+            setFavourites(state => ( state.length ? [favourite, ...state] : [favourite]));
             setLoading(false);
         }catch(err){
             console.log(err);
@@ -54,12 +55,12 @@ export const useFavourites = ({children}: Props) => {
         }
     };
 
-    const onFavouriteRemove = async (id: string) => {
+    const onFavouriteRemove = async (favourite: IFavouritesApi) => {
         if(loading) return;
         try{
             setLoading(true);
-            await api.delete(`/favourites/${id}`);
-            setFavourites(state => state ? state.filter(el => el._id !== id) : []);
+            await api.patch(`/private/favourites`, favourite);
+            setFavourites(state => state ? state.filter(el => el._id !== favourite._id) : []);
             setLoading(false);
         }catch(err){
             console.log(err)

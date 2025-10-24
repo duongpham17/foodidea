@@ -1,35 +1,37 @@
+"use client";
+
 import React, { useEffect, useState, createContext } from 'react';
-import {IUsersResponse} from '@database/models/users';
-import api from '@database/api';
+import { IUsersApi } from '@database/models/users';
+import { user_authentication } from '@localstorage';
+import { api } from '@database/api';
 
 interface Props {
-    children: React.ReactNode,
+  children: React.ReactNode,
 };
 
 export interface PropsContextTypes {
-    user: IUsersResponse | null,
-    protect: (userAllowed: string[]) => void
+  user: IUsersApi | null,
+  protect: (userAllowed: string[]) => void
 };
 
-// for consuming in children components, initial return state
 export const Context = createContext<PropsContextTypes>({
-    user: null,
-    protect: (userAllowed) => null
+  user: null,
+  protect: (userAllowed) => null
 });
 
-export const useAuthentication = ({children}: Props) => {
+export const useAuthentication = ({ children }: Props) => {
 
-    const [user, setUser] = useState<IUsersResponse | null>(null);
+    const [user, setUser] = useState<IUsersApi | null>(null);
 
-    useEffect(() => {
-        const storage = typeof window === "undefined" ? "" :  localStorage.getItem("foodidea-user");
-        const user = storage ? JSON.parse(storage) : null;
-        if(!user) return;
+   useEffect(() => {
+        const storage = typeof window === "undefined" ? "" : user_authentication.get();
+        const user = storage || undefined;
+        if(!user) return setUser(user);
+        
         (async () => {
             try{
-                const response = await api.get("/authentication/persist");
-                if(!response) return;
-                setUser(response.data.data);
+                const response = await api.get("/authentications/persist");
+                return setUser(response.data.data);
             } catch(err: any){
                 console.log(err.response)
             }
@@ -38,25 +40,31 @@ export const useAuthentication = ({children}: Props) => {
     }, []);
 
     const protect = (userAllowed: string[]) => {
-        if(user){
-            if(userAllowed.includes(user.role)){
-                return;
+        useEffect(() => {
+            if(user === null) return;
+            if(user === undefined) return window.location.replace("/404")
+            if(user){
+                if(userAllowed.includes(user.role)) {
+                    return;
+                } else {
+                    window.location.replace("/404")
+                }
             } else {
                 window.location.replace("/404")
             }
-        }
+        }, [user])
     };
 
-    const value = {
-        user,
-        protect
-    };
+  const value = {
+    user,
+    protect
+  };
 
-    return (
-        <Context.Provider value={value}>
-            {children}
-        </Context.Provider>
-    )
-}
+  return (
+    <Context.Provider value={value}>
+      {children}
+    </Context.Provider>
+  );
+};
 
-export default useAuthentication
+export default useAuthentication;

@@ -1,0 +1,38 @@
+.container{
+    width: 100%;
+
+    textarea{
+        padding: 0.5rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        box-sizing: border-box;
+        background-color: var(--light);
+        height: 150px;
+        resize: vertical;
+        max-height: 400px;
+        min-height: 100px;
+        font-family: inherit;
+        border: 1px solid var(--light);
+
+        &:hover, &:focus{
+            border-color: var(--primary);
+        }
+    }
+
+    label{
+        width: 100%;
+        margin-bottom: 0.2rem;
+        font-weight: 200;
+    }
+
+    .double{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .error{
+        color: var(--clr-red);
+    }
+
+}

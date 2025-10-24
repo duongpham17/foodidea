@@ -1,41 +1,44 @@
 import mongoose, {Schema, model, Types, Document} from 'mongoose';
 
-export interface IRecipesResponse {
-    _id: string,
-    user: string,
+export interface IRecipesApi {
+    _id: string | Types.ObjectId,
+    user: string | Types.ObjectId,
     name: string,
-    image: string,
+    image: string[],
     views: number,
+    favourites: number,
+    category: string,
     duration: number,
-    ingredients: string[]
-    steps: {_id: string, format: string, data: string}[],
+    ingredients: string,
+    instructions: string,
     timestamp: number,
 };
 
-export interface IRecipes extends Partial<Document>  {
+export interface IRecipesDocument extends Document, IRecipesApi {
     _id: Types.ObjectId,
-    user: Types.ObjectId,
-    name: string,
-    duration: number,
-    image: string,
-    views: number,
-    ingredients: string[],
-    steps: {format: string, data: string}[],
-    timestamp: number
 };
 
-const schema = new Schema<IRecipes>({
+const schema = new Schema<IRecipesDocument>({
     user:{
         type: Schema.Types.ObjectId,
         ref: 'Users'
     },
     name: {
         type: String,
-        default: ""
+        default: "unknown"
     },
     image: {
+        type: [String],
+        default: []
+    },
+    category: {
         type: String,
-        default: ""
+        lowercase: true,
+        default: "",
+    },
+    favourites :{
+        type: Number,
+        default: 0
     },
     views: {
         type: Number,
@@ -45,19 +48,20 @@ const schema = new Schema<IRecipes>({
         type: Number,
         default: 0
     },
-    ingredients: [{
-        type: String
-    }],
-    steps: [{
-        format: String,
-        data: String,
-    }],
+    ingredients: {
+        type: String,
+        default: ""
+    },
+    instructions: {
+        type: String,
+        default: ""
+    },
     timestamp: {
         type: Number,
         default: Date.now()
     },
 });
 
-const Recipes =  mongoose.models.Recipes || model<IRecipes>('Recipes', schema);
+const Recipes =  mongoose.models.Recipes || model<IRecipesDocument>('Recipes', schema);
 
 export default Recipes;

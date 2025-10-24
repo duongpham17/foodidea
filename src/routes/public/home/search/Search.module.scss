@@ -1,0 +1,55 @@
+.container{
+    max-width: 1000px;
+    margin: 3rem auto;
+
+    .header, .search, .results{
+        max-width: 500px;
+        margin: 1rem auto;
+    }
+
+    .header{
+        text-align: center;
+    }
+
+    .search{
+        form{
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--primary);
+            background-color: white;
+        }
+        button, input{
+            padding: 0.5rem;
+            display: block;
+            font-size: 1rem;
+        }
+        input{
+            width: 100%;  
+        }
+    }
+
+    .results{
+        h2{
+            margin: 1rem 0;
+        }
+        .element{
+            display: flex;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background-color: var(--light);
+            border: 2px solid var(--light);
+            &:hover{
+                border: 2px solid var(--primary);
+            }
+            img{
+                width: 100px;
+                height: 100px;
+                border-radius: 5px;
+            }
+            div{
+                padding: 0.5rem;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,40 @@
+.container{  
+    
+    .element{
+        position: relative;
+        padding: 0.5rem;
+        margin: 0.5rem;
+        background-color: var(--light);
+        border: 2px solid var(--light);
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: 80px 1fr 40px;
+        grid-template-areas: "left middle right";
+
+        &:hover{
+            border: 2px solid var(--primary);
+        }
+
+        .left{
+            grid-area: left;
+            img{
+            width: 80px;
+            height: 80px;
+            background-color: var(--dark-shade);
+            border-radius: 5px;
+            }
+        }
+        .middle{
+            grid-area: middle;
+        }
+       .right{
+            grid-area: right;
+
+            button{
+                color: var(--red);
+                font-size: 1.5rem;
+            }
+        }
+    }
+    
+}

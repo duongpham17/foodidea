@@ -2,55 +2,39 @@ import mongoose, {Schema, model, Types, Document} from 'mongoose';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 
-export interface IUsersResponse {
-    _id: string,
+export interface IUsersApi {
+    _id: string | Types.ObjectId,
     role: "user" | "admin",
     email: string,
     username: string,
+    favourites: number,
+    recipes: number,
     image: string,
-    crypto_addresses: {
-        bitcoin: string,
-        ethereum: string,
-        cardano: string
-    },
-    verified: boolean,
-    code: string,
-    confirmation: string,
-    confirmation_expiration: number,
-    createdAt: Date,
-};
-
-export interface IUsers extends Partial<Document>  {
-    _id: Types.ObjectId,
-    role: "user" | "admin",
-    email: string,
-    username: string,
-    image: string,
-    crypto_addresses: {
-        bitcoin: string,
-        ethereum: string,
-        cardano: string
-    },
     verified: boolean,
     code: string,
     confirmation: string,
     confirmation_expiration: number,
     createdAt: Date,
     correctPassword: (candidatePassword: string, userPassword: string) => Promise<boolean>,
-    createVerifyToken: () => {hashToken: string, code: string}
+    createVerifyToken: () => Promise<{ hashToken: string, code: string }>
 };
 
-const schema = new Schema<IUsers>({
+export interface IUsersRecipeApi{
+    _id: string,
+    username: string,
+    favourites: number
+}
+
+export interface IUsersDocument extends Document, IUsersApi {
+    _id: Types.ObjectId,
+};
+
+const schema = new Schema<IUsersDocument>({
     email:{
         type: String,
         trim: true,
         lowercase: true,
         unique: true
-    },
-    crypto_addresses:{
-        bitcoin: {type: String, default: ""},
-        ethereum: {type: String, default: ""},
-        cardano: {type: String, default: ""},
     },
     image: {
         type: String,
@@ -58,7 +42,14 @@ const schema = new Schema<IUsers>({
     },
     username: {
         type: String,
-        default: "unknown"
+    },
+    favourites: {
+        type: Number,
+        default: 0,
+    },
+    recipes: {
+        type: Number,
+        default: 0
     },
     role: {
         type: String,
@@ -122,6 +113,6 @@ schema.methods.createVerifyToken = function(){
 
 };
 
-const Users =  mongoose.models.Users || model<IUsers>('Users', schema);
+const Users =  mongoose.models.Users || model<IUsersDocument>('Users', schema);
 
 export default Users;

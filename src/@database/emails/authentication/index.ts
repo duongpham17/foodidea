@@ -1,14 +1,14 @@
 import { Email, email_address } from '../index';
 import { AUTHENTICATION } from './template';
 
-interface Authentication {
+interface Props {
     email: string,
     url: string,
     code: string,
     host: string
 };
 
-export const EMAIL_SIGNUP = async (data: Authentication) => {
+export const SIGNUP = async (data: Props) => {
     const transporter = Email();
     const mailOptions = {
         from: `${email_address} <${email_address}>`,
@@ -24,7 +24,7 @@ export const EMAIL_SIGNUP = async (data: Authentication) => {
     await transporter.sendMail(mailOptions);
 };
 
-export const EMAIL_LOGIN = async (data: Authentication) => {
+export const LOGIN = async (data: Props) => {
     const transporter = Email();
 
     const mailOptions = {

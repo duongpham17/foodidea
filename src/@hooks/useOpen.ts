@@ -8,40 +8,40 @@ const useOpen = <T>({initialState}: Props<T>) => {
 
     const [open, setOpen] = useState(false);
 
-    const [openValue, setOpenValue] = useState<T | null>(initialState || null);
+    const [values, setValues] = useState<T | null>(initialState || null);
 
-    const [openItems, setOpenItems] = useState<any[]>([initialState]);
+    const [array, setArray] = useState<any[]>([initialState]);
 
     const onOpen = () => setOpen(!open);
 
     const onOpenValue = (value:T, change=false) => {
-        if((value === openValue) && !change) return setOpenValue(null);
-        setOpenValue(value);
+        if((value === values) && !change) return setValues(null);
+        setValues(value);
     };
 
     const onOpenItems = (value: string) => {
-        const isOpen = openItems.includes(value);
+        const isOpen = array.includes(value);
         if(isOpen) {
-            const newOpen = openItems.filter(el => el !== value);
-            setOpenItems(newOpen);
+            const newOpen = array.filter(el => el !== value);
+            setArray(newOpen);
         } else {
-            setOpenItems((state) => [...state, value])
+            setArray((state) => [...state, value])
         }
     };
 
     const onOpenItemsClear = () => {
-        setOpenItems([]);
+        setArray([]);
     };
 
     return {
         setOpen,
         onOpen,
         open,
-        openValue,
+        values,
         onOpenValue,
-        setOpenValue,
-        openItems,
-        setOpenItems,
+        setValues,
+        array,
+        setArray,
         onOpenItems,
         onOpenItemsClear,
     }

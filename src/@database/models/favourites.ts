@@ -1,35 +1,29 @@
 import mongoose, {Schema, model, Types, Document} from 'mongoose';
 
-export interface IFavouritesResponse {
-    _id: string,
-    userID: string,
-    followID: string,
-    recipeID: string,
+export interface IFavouritesApi {
+    _id: string | Types.ObjectId,
+    user_id: string | Types.ObjectId,
+    follow_id: string | Types.ObjectId,
+    recipe_id: string | Types.ObjectId,
     name: string,
     image: string,
     timestamp: number
 };
 
-export interface IFavourites extends Partial<Document>  {
+export interface IFavouritesDocument extends Document, IFavouritesApi  {
     _id: Types.ObjectId,
-    userID: Types.ObjectId,
-    followID: Types.ObjectId,
-    recipeID: Types.ObjectId,
-    name: string,
-    image: string,
-    timestamp: number
 };
 
-const schema = new Schema<IFavourites>({
-    userID:{
+const schema = new Schema<IFavouritesDocument>({
+    user_id:{
         type: Schema.Types.ObjectId,
         ref: 'Users'
     },
-    followID: {
+    follow_id: {
         type: Schema.Types.ObjectId,
         ref: 'Users'
     },
-    recipeID: {
+    recipe_id: {
         type: Schema.Types.ObjectId,
         ref: 'Recipes'
     },
@@ -45,6 +39,6 @@ const schema = new Schema<IFavourites>({
     },
 });
 
-const Favourites =  mongoose.models.Favourites || model<IFavourites>('Favourites', schema);
+const Favourites =  mongoose.models.Favourites || model<IFavouritesDocument>('Favourites', schema);
 
 export default Favourites;

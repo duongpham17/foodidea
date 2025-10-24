@@ -1,0 +1,16 @@
+.container{
+    padding: 1rem;
+    .pages{
+        text-align: center;
+        .number{
+            padding: 0.5rem;
+            background-color: var(--light);
+            border-radius: 5px;
+            margin: 0 0.1rem;
+        }
+        .selected{
+            background-color: var(--primary);
+            color: white;
+        }
+    }
+}

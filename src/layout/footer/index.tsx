@@ -1,15 +1,16 @@
 import styles from './Footer.module.scss';
 import React from 'react';
-import Copyright from './Copyright';
+
+import Copyright from './copyright';
+import Links from './links';
 
 const Footer = () => {
   
   return ( 
-    <div className={styles.container}> 
-
+    <footer className={styles.container}> 
+      <Links />
       <Copyright/>
-      
-    </div>
+    </footer>
   )
 }
 

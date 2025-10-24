@@ -1,26 +1,24 @@
-import { website_name } from '../../environment';
+import { data } from '@data/business';
  
-export const AUTHENTICATION = ({des, url, code, host}: {des:string, url: string, code: string, host: string}) => `
+export const AUTHENTICATION = ({code, host}: {des:string, url: string, code: string, host: string}) => `
 <html>
     <body>          
-        <table style="width: 100%;border-spacing: 0px;background: white;">
+        <table style="width: 100%;border-spacing: 0px;background: white; padding: 0.5rem;">
             <tr>
-                <th style="text-align: left; font-size: 1.5rem; margin: 1rem 0">            
+                <th style="text-align: center; font-size: 1.5rem; margin: 1rem 0">            
                     <h2>
-                        <a href="${host}" style="text-decoration: none;color: black">${website_name}</a>
+                        <a href="${host}" style="text-decoration: none;color: black">${data.name}</a>
                     </h2>
                 </th>
             </tr>
             <tr class="link">
-                <td>
-                <p style="color: #1F51FF; font-size: 2rem"> ${code} </p>
-                <p> Your magic link </p>
-                <a class="link" href="${url}" style="text-decoration: none; color:#1F51FF; font-size: 2rem; border-bottom: 1px solid #1F51FF"> ${des}</a>
+                <td style="text-align: center;">
+                	<p style="color: #1F51FF; font-size: 2rem; letter-spacing: 1rem;"> ${code} </p>
                 </td>
             </tr>
             <tr>
-            <td>
-                <p style="margin: 2rem 0">
+            <td style="text-align: center; ">
+                <p>
                     If you did not request this email, please delete or ignore.
                 </p> 
             </td>

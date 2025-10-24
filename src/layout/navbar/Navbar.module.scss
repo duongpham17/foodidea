@@ -1,75 +1,23 @@
 .container{
-    background-color: white;
+    min-width: 320px;
     width: 100%;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--clr-main-fade);
     position: sticky;
     top: 0;
+    padding: 0.5rem;
 
-    .logo{
-        a{
-            display: block;
-            background-color: var(--clr-main);
-            color: white;
-            font-size: 1.2rem;
-            padding: 0.3rem 0.5rem;
-
-            &:hover{
-                background-color: var(--clr-main-fade);
-            }
-        }
+    .icon{
+        margin-left: 0.2rem;
     }
+    .left{
 
-    .menu{
+    }
+    .right{
         display: flex;
         align-items: center;
     }
-}
 
-.favourites{
-    .favourite{
-        background-color: var(--clr-light-light);
-        border: 1px solid transparent;
-        display: grid;
-        grid-template-columns: 1fr 50px;
-        grid-template-areas: "left right";
-        margin: 0.5rem 0;
-        padding: 0.5rem;
-        &:hover{
-            border: 1px solid var(--clr-main);
-        }
-        .left{
-            grid-area: left;
-            a{
-                display: flex;
-                align-items: center;
-            }
-            img{
-                width:100px;
-                height:70px;
-                margin-right: 1rem;
-                background-color: white;
-            }
-        }
-        .right{
-            grid-area: right;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            svg{
-                font-size: 1.5rem;
-                color: var(--clr-red);
-            }
-        }
-    }
-}
-
-.profile{
-    a{
-        margin-bottom: 0.5rem;
-    }
 }

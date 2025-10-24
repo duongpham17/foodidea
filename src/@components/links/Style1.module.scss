@@ -1,0 +1,88 @@
+.container{
+    width: 100%;
+    a{
+        display: block;
+        width: 100%;
+        padding: 0.5rem 2.5rem;
+        transition: ease-in-out 0.3s;
+        border: 1px solid transparent;
+    }
+}
+
+.center{
+    text-align: center;
+}
+
+.default{
+    background-color: var(--background);
+}
+
+.primary{
+    background-color: var(--primary);
+    color: white;
+
+    &:hover{
+        background-color: var(--light);
+        color: black;
+    }
+}
+
+.white{
+    background-color: white;
+    color: var(--primary);
+
+    &:hover{
+        background-color: var(--light);
+        color: black;
+    }
+}
+
+.black{
+    background-color: black;
+    color: white;
+    border: 2px solid transparent;
+
+    &:hover{
+        background-color: var(--light);
+        color: black;
+    }
+}
+
+.dark{
+    background-color: var(--dark);
+    color: white;
+
+    &:hover{
+        background-color: var(--light);
+        color: black;
+    }
+}
+
+.light{
+    background-color: var(--light);
+
+    &:hover{
+        background-color: var(--light);
+        color: black;
+    }
+}
+
+.red{
+    background-color: var(--red);
+    color: white;
+
+    &:hover{
+        background-color: var(--light);
+        color: black;
+    }
+}
+
+.green{
+    background-color: var(--green);
+    color: white;
+
+    &:hover{
+        background-color: var(--light);
+        color: black;
+    }
+}

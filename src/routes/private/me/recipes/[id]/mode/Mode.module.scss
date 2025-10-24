@@ -1,0 +1,14 @@
+.container{
+    border-bottom: 2px solid var(--dark);
+    display: flex;
+    margin-bottom: 1rem;
+
+    button{
+        padding: 0.5rem;
+        width: 100%;
+    }
+    .selected{
+        background-color: var(--dark);
+        color: white;
+    }
+}

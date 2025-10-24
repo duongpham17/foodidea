@@ -1,0 +1,11 @@
+.container{
+    select {
+        padding: 8px 12px;
+        border: 1px solid var(--dark-shade);
+        border-radius: 6px;
+        background-color: var(--dark-shade);
+        font-size: 16px;
+        color: var(--light);
+        width: 100%;
+    }
+}

@@ -1,0 +1,101 @@
+@mixin fallSpin($leftPercent, $duration) {
+  left: unquote("#{$leftPercent}%");
+  animation: fallSpinAnimation #{$duration} ease-in-out infinite;
+
+  @keyframes fallSpinAnimation {
+    0% {
+      transform: translateX(0) translateY(-100%) rotate(0deg);
+      opacity: 1;
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) translateY(100vh) rotate(780deg);
+      opacity: 0;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  top: -0;
+  left: 0;
+  z-index: -1;
+
+  svg {
+    font-size: 3rem;
+    color: var(--primary);
+    z-index: -1;
+  }
+
+  div {
+    top: 0rem;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .item1 {
+    @include fallSpin(4, 8s);
+  }
+  .item2 {
+    @include fallSpin(10, 12s);
+  }
+  .item3 {
+    @include fallSpin(15, 15s);
+  }
+  .item4 {
+    @include fallSpin(20, 11s);
+  }
+  .item5 {
+    @include fallSpin(25, 7s);
+  }
+
+  .item6 {
+    @include fallSpin(25, 9s);
+  }
+  .item7 {
+    @include fallSpin(30, 13s);
+  }
+  .item8 {
+    @include fallSpin(35, 18s);
+  }
+  .item9 {
+    @include fallSpin(40, 6s);
+  }
+  .item10 {
+    @include fallSpin(45, 14s);
+  }
+
+  .item11 {
+    @include fallSpin(50, 8.5s);
+  }
+  .item12 {
+    @include fallSpin(55, 11.5s);
+  }
+  .item13 {
+    @include fallSpin(60, 16.5s);
+  }
+  .item14 {
+    @include fallSpin(65, 12.5s);
+  }
+  .item15 {
+    @include fallSpin(70, 20s);
+  }
+
+  .item16 {
+    @include fallSpin(75, 6.9s);
+  }
+  .item17 {
+    @include fallSpin(79, 9.4s);
+  }
+  .item18 {
+    @include fallSpin(83, 13.4s);
+  }
+  .item19 {
+    @include fallSpin(87, 11.9s);
+  }
+  .item20 {
+    @include fallSpin(90, 13.8s);
+  }
+}

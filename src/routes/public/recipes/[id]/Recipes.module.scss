@@ -1,0 +1,24 @@
+.container{
+    max-width: 1000px;
+    margin: auto;
+
+    section{
+        margin: 1rem 0;
+    }
+    
+    .ingredients, .instructions{
+        h1{
+            border-bottom:1px solid var(--dark);
+            margin: 0.5rem 0;
+            padding: 0.5rem 0;
+        }
+        p{
+            white-space: pre-wrap;
+        }
+        a{
+            color: var(--primary);
+            border-bottom: 1px solid var(--primary);
+        }
+    }
+
+}
