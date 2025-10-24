@@ -14,7 +14,7 @@ const Ingredients = () => {
   
   return (
       <div className={styles.container}>
-        <h1>Ingredients [ {recipe ? removeWhiteSpace(recipe.ingredients).length : ""} ]</h1>
+        <h1>Ingredients {recipe ? removeWhiteSpace(recipe.ingredients).length : ""} </h1>
         <p>{recipe?.ingredients}</p>
       </div>
   )

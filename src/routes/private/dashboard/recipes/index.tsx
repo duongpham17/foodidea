@@ -18,11 +18,12 @@ const Recipes = () => {
             {recipes.length && recipes.map(el => 
             <div className={styles.element} key={el._id.toString()}>
               <div className={styles.left}>
-                <Link className={styles.live} href={`/recipes/${el._id}`}>Live</Link>
+                <Link className={styles.live} href={`/recipes/${el._id}?name=${el.name}&category=${el.category}`}>Live</Link>
                 {el.image ? <img src={el.image[0]} alt="food" /> : <img src={""} alt="food"/>}
               </div>
               <Link href={`/me/recipes/${el._id}`} className={styles.right}>
                 <p>{el.duration} Minutes | {el.views} Views</p>
+                <p>{el.category}</p>
                 <p>{el.name}</p>
               </Link>
 

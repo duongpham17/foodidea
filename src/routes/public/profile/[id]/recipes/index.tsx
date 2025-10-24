@@ -22,6 +22,7 @@ const Recipes = () => {
               </div>
               <div className={styles.right}>
                 <p>{el.duration} Minutes | {el.views} Views</p>
+                <p>{el.category}</p>
                 <p>{el.name}</p>
               </div>
             </Link>

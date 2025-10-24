@@ -10,7 +10,7 @@ const Header = () => {
 
     return (
       <div className={styles.container}>
-        <h1>{recipe?.name}</h1>
+        <h1>{recipe?.name} ({recipe?.category})</h1>
         <p>{recipe ? new Date(recipe.timestamp).toLocaleDateString('en-GB') : ""}</p>
       </div>
     )

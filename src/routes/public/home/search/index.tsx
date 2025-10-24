@@ -51,7 +51,7 @@ const Search = () => {
             {loading && <Loader center />}
             <h2>{results.length ? `Recipes [ ${results.length} ]` : ""}</h2>
             {results.map(el => 
-                <Link href={`/recipes/${el._id}`} className={styles.element} key={el._id.toString()}>
+                <Link href={`/recipes/${el._id}?name=${el.name}&category=${el.category}`} className={styles.element} key={el._id.toString()}>
                     <img src={el.image[0]} alt={el.name} />
                     <div>
                         <p>{el.duration} Minutes | {el.views} Views</p>

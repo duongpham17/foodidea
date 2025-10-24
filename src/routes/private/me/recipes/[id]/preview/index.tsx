@@ -71,7 +71,7 @@ const Edit = () => {
       </section>
 
       <section className={styles.header}>
-        <h1>{recipes.name}</h1>
+        <h1>{recipes.name} ({recipes.category})</h1>
       </section>
 
       <section className={styles.ingredients}>

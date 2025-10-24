@@ -2,6 +2,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* two equal columns */
     margin: 1rem auto;
+    max-width: 1000px;
+    margin: auto;
     
     .element{
       position: relative;
@@ -11,7 +13,7 @@
       border: 2px solid var(--light);
       display: grid;
       gap: 0.5rem;
-      grid-template-columns: 0.5fr 1fr;
+      grid-template-columns: 100px 1fr;
       grid-template-areas: "left right";
 
       &:hover{
