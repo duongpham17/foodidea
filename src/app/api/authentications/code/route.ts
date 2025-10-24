@@ -3,7 +3,7 @@ import connectDB from '@database/connect';
 import usersMODEL from '@database/models/users';
 import jwt from 'jsonwebtoken';
 
-export const createSecureToken = (id: string) => {
+const createSecureToken = (id: string) => {
 
     const secret: any = process.env.JWT_SECRET;
 
