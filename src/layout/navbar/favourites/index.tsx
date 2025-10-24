@@ -15,7 +15,7 @@ const Favourites = () => {
     const {favourites, onFavouriteRemove, loading} = useContext(Context);
 
     return (
-        <SlideIn icon={<Button label1={<AiOutlineHeart size={20}/>} />} openTop={`FAVOURITES [ ${favourites?.length || 0} ]`}>
+        <SlideIn icon={<Button label1={<AiOutlineHeart size={20}/>} />} openTop={`Favourites [ ${favourites?.length || 0} ]`}>
             <div className={styles.container}>
                 {favourites?.map(el => 
                     <div key={el._id.toString()} className={styles.element}>
