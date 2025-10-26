@@ -3,16 +3,15 @@
     align-items: center;
     justify-content: space-between;
 
-    p{
-        padding: 0 0.5rem;
+    a{
+        border-bottom: 1px solid var(--dark);
     }
+
     svg{
         font-size: 1.5rem;
         display: block;
     }
     button, a{
-        display: flex;
-        align-items: center;
         &:hover{
             opacity: 0.8;
         }

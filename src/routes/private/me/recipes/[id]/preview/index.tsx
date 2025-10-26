@@ -63,6 +63,10 @@ const Edit = () => {
   return ( 
     <div className={styles.container}> 
 
+      <section className={styles.header}>
+        <h1>{recipes.name} ({recipes.category})</h1>
+      </section>
+
       <section className={styles.image}>
         <img src={recipes.image[0]} alt={recipes.name} />
         <div>
@@ -70,12 +74,8 @@ const Edit = () => {
         </div>
       </section>
 
-      <section className={styles.header}>
-        <h1>{recipes.name} ({recipes.category})</h1>
-      </section>
-
       <section className={styles.ingredients}>
-        <h1>Ingredients [ {removeWhiteSpace(recipes.ingredients).length} ]</h1>
+        <h1>Ingredients {removeWhiteSpace(recipes.ingredients).length}</h1>
         <p>{recipes.ingredients}</p>
       </section>
 

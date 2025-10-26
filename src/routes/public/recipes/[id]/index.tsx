@@ -15,7 +15,7 @@ const RecipesIdRoute = () => {
       <div className={styles.container}> 
 
         <section>
-          <Creator />
+          <Header />
         </section>
 
         <section>
@@ -23,7 +23,7 @@ const RecipesIdRoute = () => {
         </section>
 
         <section>
-          <Header />
+          <Creator />
         </section>
 
         <section>

@@ -6,7 +6,6 @@ import { Context as FavouriteContext } from '@context/useFavourites';
 import { Context as AuthenticationContext } from '@context/useAuthentication';
 import { Context } from '../Context';
 import { AiOutlineHeart, AiFillHeart  } from "react-icons/ai";
-import { FaUser } from "react-icons/fa";
 import Link from 'next/link';
 
 const Creator = () => {
@@ -25,9 +24,10 @@ const Creator = () => {
     <div className={styles.container}> 
 
         <Link href={`/profile/${user?._id}?page=1&limit=10`}>
-          <FaUser/>
-          <p>{user?.username.toUpperCase()} {isMe && "( ME )"}</p>
+          <p>Created by: {user?.username.toUpperCase()} {isMe && "( ME )"}</p>
         </Link>
+        
+        <p>{recipe ? new Date(recipe.timestamp).toLocaleDateString('en-GB') : ""}</p>
 
         {!isMe && isUserAuthenticated &&
           <div>
