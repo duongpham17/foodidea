@@ -71,6 +71,8 @@ const Editing = ({recipes}:{recipes: IRecipesApi}) => {
                 value={values.duration}
                 onChange={onChange}
                 error={validationErrors.duration}
+                pattern="[0-9]*"
+                inputMode="numeric"
             />
 
             <Textarea 
